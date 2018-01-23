@@ -180,11 +180,12 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
         LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
         LOCAL_PRELINK_MODULE := false
-        LOCAL_MODULE_RELATIVE_PATH := hw
+        #LOCAL_MODULE_RELATIVE_PATH := hw
         LOCAL_MODULE_TAGS := optional
         LOCAL_SHARED_LIBRARIES += liblog libcutils libz libdl libutils
         LOCAL_CLANG := true
         LOCAL_MODULE := sensors.$(TARGET_BOARD_PLATFORM)
+        LOCAL_PROPRIETARY_MODULE := true
 
         include $(BUILD_SHARED_LIBRARY)
 
@@ -207,6 +208,7 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
     LOCAL_SHARED_LIBRARIES := libcutils libc libutils liblog
     LOCAL_MODULE := sensorhub.$(TARGET_BOARD_PLATFORM)
     LOCAL_MODULE_TAGS := optional
+    LOCAL_PROPRIETARY_MODULE := true
 
     include $(BUILD_SHARED_LIBRARY)
 
@@ -290,6 +292,7 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
     # Added by top level make files: -std=gnu++11
     LOCAL_CXXFLAGS += -Weffc++
     LOCAL_SHARED_LIBRARIES := libcutils libc libsensorhub liblog
+    LOCAL_PROPRIETARY_MODULE := true
 
     LOCAL_SRC_FILES := \
         motosh_bin/motosh.cpp \

@@ -19,6 +19,7 @@ include $(CLEAR_VARS)
 
 LOCAL_MODULE := libsensorhub
 LOCAL_MODULE_TAGS := optional
+LOCAL_PROPRIETARY_MODULE := true
 
 ifeq ($(MOT_SENSOR_HUB_HW_TYPE_L4), true)
     LOCAL_CFLAGS += -DMOTOSH

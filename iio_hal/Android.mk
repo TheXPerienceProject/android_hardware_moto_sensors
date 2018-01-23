@@ -39,12 +39,12 @@ LOCAL_C_INCLUDES += \
     $(LOCAL_PATH)/.. \
     $(LOCAL_PATH)/../motosh_hal \
     system/core/base/include \
-    motorola/external/libiio \
+    external/libiio \
     external/libselinux/include \
     $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr/include
 
 # Needs to be added after KERNEL_OBJ/usr/include
-LOCAL_C_INCLUDES += kernel/include
+LOCAL_C_INCLUDES += kernel/motorola/msm8953/include
 
 LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
