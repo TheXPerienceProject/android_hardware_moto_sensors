@@ -149,7 +149,7 @@ static int sensorhub_algo_req(struct sensorhub_device_t* device, uint16_t algo,
         uint32_t active_parts, struct sensorhub_req_t* req_info)
 {
     struct sensorhub_context_t* context = (struct sensorhub_context_t*)device;
-    int i, error = 0;
+    int error = 0;
     uint8_t req_len;
     uint16_t algos;
 
@@ -189,14 +189,14 @@ static int sensorhub_algo_req(struct sensorhub_device_t* device, uint16_t algo,
     } else
     if (algo == SENSORHUB_ALGO_ACCUM_MODALITY) {
         ALOGD("sensorhub_algo_accum_modality(): about to copy req_info size: %d", req_len);
-        for (i = 0; i < num_parts[algo]; i++) {
+        for (int i = 0; i < num_parts[algo]; i++) {
             memcpy(p, &req_info[i].as_req, sizeof(req_info[i].as_req));
             p += sizeof(req_info[i].as_req);
         }
     } else {
         memcpy(p, &active_parts, sizeof(active_parts));
         p += sizeof(active_parts);
-        for (i = 0; i < num_parts[algo]; i++) {
+        for (int i = 0; i < num_parts[algo]; i++) {
             memcpy(p, req_info[i].durations, sizeof(req_info[i].durations));
             p += sizeof(req_info[i].durations);
         }
@@ -224,7 +224,7 @@ static int sensorhub_algo_query(struct sensorhub_device_t* device, uint16_t algo
     struct sensorhub_event_t* output)
 {
     struct sensorhub_context_t* context = (struct sensorhub_context_t*)device;
-    int i, evt_reg_size, error = 0;
+    int evt_reg_size, error = 0;
 
     if (algo == SENSORHUB_ALGO_ACCUM_MVMT) {
         evt_reg_size = MOTOSH_EVT_SZ_ACCUM_MVMT;

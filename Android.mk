@@ -25,7 +25,6 @@ LOCAL_PATH := $(LOCAL_TOP_DIR)
 
 # If the board uses QCOM sensors then don't compile MOTO sensors.
 ifeq (, $(filter true,$(BOARD_USES_QCOM_SENSOR_HUB) $(PRODUCT_HAS_QCOMSENSORS)))
-
 ###########################################
 # Motorola SensorHub section only         #
 # Sensors are connected to motorola       #
@@ -120,6 +119,7 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
 
         LOCAL_CFLAGS := -DLOG_TAG=\"MotoSensors\"
         LOCAL_CFLAGS += $(SH_CFLAGS)
+        LOCAL_CFLAGS += -Wno-unused-private-field -Wno-unused-variable -Wno-unused-parameter -Wno-format
         LOCAL_CXX_FLAGS += -std=c++14
 
         LOCAL_SRC_FILES :=              \
@@ -289,6 +289,7 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
     LOCAL_MODULE := motosh
     #LOCAL_CFLAGS+= -D_DEBUG
     LOCAL_CFLAGS += -Wall -Wextra
+    LOCAL_CFLAGS += -Wno-unused-variable -Wno-unused-parameter
     # Added by top level make files: -std=gnu++11
     LOCAL_CXXFLAGS += -Weffc++
     LOCAL_SHARED_LIBRARIES := libcutils libc libsensorhub liblog
@@ -303,7 +304,7 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
         ifneq ($(TARGET_BUILD_VARIANT),user)
             # Build libiio.so
             LOCAL_REQUIRED_MODULES += libiio
-
+						LOCAL_CFLAGS += -Wno-unused-variable
             # Build libiio tests/utilities
             LOCAL_REQUIRED_MODULES += iio_genxml iio_info iio_readdev iio_reg
             # Build the kernel provided IIO Utilities
@@ -355,4 +356,3 @@ else # For non sensorhub version of sensors
 endif # BOARD_USES_MOT_SENSOR_HUB
 
 endif # !BOARD_USES_QCOM_SENSOR_HUB
-

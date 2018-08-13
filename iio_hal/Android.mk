@@ -50,7 +50,7 @@ LOCAL_ADDITIONAL_DEPENDENCIES += $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
 LOCAL_SHARED_LIBRARIES += libiio libcrypto
 LOCAL_SHARED_LIBRARIES += liblog libcutils libutils libc libbase libselinux
-LOCAL_CFLAGS += -Wall -Wextra
+LOCAL_CFLAGS += -Wall -Wextra -Wno-unused-variable
 LOCAL_CXXFLAGS += -Weffc++ -std=c++14
 
 #LOCAL_PRELINK_MODULE := false
@@ -58,4 +58,3 @@ LOCAL_CXXFLAGS += -Weffc++ -std=c++14
 LOCAL_PROPRIETARY_MODULE := true
 
 include $(BUILD_SHARED_LIBRARY)
-
