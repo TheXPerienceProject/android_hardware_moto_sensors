@@ -186,7 +186,8 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
         LOCAL_CLANG := true
         LOCAL_MODULE := sensors.$(TARGET_BOARD_PLATFORM)
         LOCAL_PROPRIETARY_MODULE := true
-
+        LOCAL_HEADER_LIBRARIES := libhardware_headers
+        LOCAL_VENDOR_MODULE := true
         include $(BUILD_SHARED_LIBRARY)
 
     endif # !TARGET_SIMULATOR
@@ -205,10 +206,11 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
     # Need the UAPI output directory to be populated with motosh.h/stml0xx.h
     LOCAL_ADDITIONAL_DEPENDENCIES := $(TARGET_OUT_INTERMEDIATES)/KERNEL_OBJ/usr
 
-    LOCAL_SHARED_LIBRARIES := libcutils libc libutils liblog
+    LOCAL_SHARED_LIBRARIES := libcutils libc libutils liblog libhardware
     LOCAL_MODULE := sensorhub.$(TARGET_BOARD_PLATFORM)
     LOCAL_MODULE_TAGS := optional
-    LOCAL_PROPRIETARY_MODULE := true
+    LOCAL_HEADER_LIBRARIES := libhardware_headers
+    LOCAL_VENDOR_MODULE := true
 
     include $(BUILD_SHARED_LIBRARY)
 
