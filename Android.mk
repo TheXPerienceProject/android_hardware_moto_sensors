@@ -293,9 +293,11 @@ ifeq ($(BOARD_USES_MOT_SENSOR_HUB), true)
     #LOCAL_CFLAGS+= -D_DEBUG
     LOCAL_CFLAGS += -Wall -Wextra
     LOCAL_CFLAGS += -Wno-unused-variable -Wno-unused-parameter
+    LOCAL_CFLAGS += -Wno-gnu-designator -Wno-writable-strings
     # Added by top level make files: -std=gnu++11
     LOCAL_CXXFLAGS += -Weffc++
     LOCAL_SHARED_LIBRARIES := libcutils libc libsensorhub liblog
+    LOCAL_HEADER_LIBRARIES := libutils_headers libhardware_headers
     LOCAL_PROPRIETARY_MODULE := true
 
     LOCAL_SRC_FILES := \
